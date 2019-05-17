@@ -38,12 +38,14 @@ const reducer = (state = initialState, action) => {
 
     case ADD_SMURF_START:
     return {
+      ...state,
       addingSmurf: true,
       error: ''
     };
 
-    case ADD_SMURF_START:
+    case ADD_SMURF_SUCCESS:
     return {
+      ...state,
       addingSmurf: false,
       smurfs: action.payload,
       error: ''

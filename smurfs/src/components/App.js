@@ -37,6 +37,11 @@ class App extends Component {
   addSmurf = e => {
     e.preventDefault();
     this.props.addSmurf(this.state.newSmurf)
+    this.setState({newSmurf: {...this.state.newSmurf,
+       name: '', 
+       age: '', 
+       height: ''
+      }})
   };
   
   render() {
