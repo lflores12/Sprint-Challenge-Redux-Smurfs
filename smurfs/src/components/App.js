@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { getSmurfs } from '../actions';
+import { getSmurfs, addSmurf } from '../actions';
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -16,14 +16,28 @@ class App extends Component {
   state = {
     newSmurf: {
       name: '',
-      age: 
+      age: '',
+      height: ''
     }
-  }
+  };
   
   componentDidMount(){
     this.props.getSmurfs();
+  };
+
+  handleChanges = e => {
+    this.setState({
+      newSmurf: {
+        ...this.state.newSmurf, 
+        [e.target.name]: e.target.value
+      }
+    });
   }
   
+  addSmurf = e => {
+    e.preventDefault();
+    this.props.addSmurf(this.state.newSmurf)
+  };
   
   render() {
     return (
@@ -33,15 +47,42 @@ class App extends Component {
           {this.props.smurfs.map(smurf => 
             <h3 className='individual-smurf' key = {smurf.id}>{smurf.name}</h3> )}
         </div>
+
+        <div className='form-container'>
+            <form onSubmit= {this.addSmurf}>
+            <input 
+            type= 'text'
+            name= 'name'
+            value = {this.state.newSmurf.name}
+            placeholder = 'name'
+            onChange = {this.handleChanges}
+            />
+            <input 
+            type= 'text'
+            name= 'age'
+            value = {this.state.newSmurf.age}
+            placeholder= 'age'
+            onChange = {this.handleChanges}
+            />
+            <input 
+            type= 'text'
+            name= 'height'
+            value = {this.state.newSmurf.height}
+            placeholder = 'height'
+            onChange = {this.handleChanges}
+            />
+            <button type ='submit'>Add New Smurf</button>
+            </form>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  getSmurfs: state.getSmurfs,
+  
   smurfs: state.smurfs,
-  error: state.error
+  error: state.error,
 })
 
-export default connect(mapStateToProps, {getSmurfs} )(App);
+export default connect(mapStateToProps, {getSmurfs, addSmurf} )(App);
