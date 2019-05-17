@@ -26,6 +26,12 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
 
+ANSWERS FOR QUESTIONS
+
+In your own words, describe actions, reducers and the store and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application? A store is a centralized place where all you state lives in and where all your components can get that data from. its a single source of truth because the main state is only available there and if one component changes anything to it, all the other components will dsiplay that new data as well. the reducer takes in an action and action type and decides what to do with the state in store. Actions are like events and event listeners where they make something happen and then dispatch an action type to the reducer. 
+ What is the difference between Application state and Component state? When would be a good time to use one over the other? application state is when we use a state management system where our state lives in one place. component state is when the individual component controls its own state. A good time to use component state is when we have a form. that way we can set the state of our form to be the value a user is inputing.
+ Describe redux-thunk, what does it allow us to do? How does it change our action-creators? redux thunk is a type of middleware that or a function that returns a function that returns a function and makes it possible to have asynchronus actions to be able to do things like ajax calls to servers.
+
 ## Project Set Up
 
 Follow these steps to set up your project:
